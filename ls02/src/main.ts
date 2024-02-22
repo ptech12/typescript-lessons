@@ -25,3 +25,4 @@ console.log(sum(5, 6));
 
 
 let re: RegExp = /\w+/g; // RegExp
+ 
