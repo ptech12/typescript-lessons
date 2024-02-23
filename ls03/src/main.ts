@@ -37,4 +37,85 @@ bands.push("Van Helen");
 */
 let myTuple: [string, number, boolean] = ['Deva', 43, true];
 
-let mixed = ['John']
+let mixed: [string, number, boolean] = ['John', 1, false]
+
+myTuple = mixed
+
+/* 
+* objects
+*/
+
+let myObj: object;
+// arrays is a type of objects
+myObj = []
+
+// console.log(typeof mixed);
+// console.log(typeof bands);
+
+const obj = {
+    // already locked to thier desired type 
+    prop1: 'Dave',
+    prop2: true
+    // cannot able to reassign with any other type
+}
+
+obj.prop1 = 'ptech12'
+
+
+/* 
+    pre-defining the type using 
+    => type (var)
+    same as the interface
+*/
+interface Guitarist {
+    name?: string,
+    active?: boolean,
+    albums: (string | number)[] // union array type 
+}
+// type Guitarist = {
+//     name: string,
+//     active?: boolean,
+//     albums: (string | number)[] // union array type 
+// }
+
+
+// creating object with Guitarist type
+let evh: Guitarist =  {
+    name: "Dave",
+    active: false,
+    albums: [1984, 5150, 'OU812']
+}
+// second guitarist obj
+let JP: Guitarist =  {
+    name: "Jimmy",
+    active: true,
+    albums: ['I', 'II', 'IV']
+}
+
+// creating function with type Guitarist
+/* 
+* function greatGuitarist
+* parameters: guitarist: Guitarist
+* return (String Object)
+*/
+const greatGuitarist = (guitarist: Guitarist) => {
+    // typescript knows in compile time rather than at runtime
+    if (guitarist.name) {
+        return `Hello ${guitarist.name.toUpperCase()}`
+    }
+}
+
+console.log(greatGuitarist(JP));
+
+/* Enums */
+enum Grade {
+    // typescript automatically adds in order
+    // instead of ZERO it uses ONE
+    U = 1,
+    D,
+    C,
+    B,
+    A
+}
+
+console.log(Grade.A);
