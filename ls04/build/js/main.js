@@ -21,3 +21,11 @@ const logMsg = (msg) => {
 logMsg('Hello');
 logMsg(add(2, 5));
 // logMsg('Hello')
+/* normal function */
+let substract = function (c, d) {
+    return c - d;
+};
+let multiply = function (c, d) {
+    return c * d;
+};
+logMsg(multiply(2, 2));

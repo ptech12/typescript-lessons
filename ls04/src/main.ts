@@ -44,3 +44,16 @@ const logMsg = (msg: any): void => {
 logMsg('Hello')
 logMsg(add(2, 5))
 // logMsg('Hello')
+
+/* normal function */
+let substract = function(c: number, d: number): number {
+    return c - d;
+}
+
+type mathParams = (a: number, b: number) => number;
+
+let multiply: mathParams = function(c, d){
+    return c * d;
+}
+
+logMsg(multiply(2,2))
