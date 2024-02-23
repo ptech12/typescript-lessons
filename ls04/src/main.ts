@@ -1,11 +1,46 @@
-
+// Keeps the code DRY
+// Don't Repeat Yourself
 /* 
-    pre-defining the type using 
-    => type (var)
-    same as the interface
+    type Aliases
 */
-interface Guitarist {
+type strOrNum = string | number;
+
+type strOrNumArray = (string | number)[]
+
+
+type Guitarist = {
     name?: string,
-    active?: boolean,
-    albums: (string | number)[] // union array type 
+    active: boolean,
+    // using type aliases => strOrNumArray
+    albums: strOrNumArray  // union array type 
 }
+
+type userId = strOrNum
+
+// Literal type
+// Also keeps the code DRY
+let myName: 'Dave';
+
+myName = 'Dave'
+
+let userName: 'Dave' | 'John' | 'Amy';
+
+userName = "John"
+
+// functions
+/* a and b are number type */
+/*
+ typescript automattically inferes the return type as number 
+ unless explictly mentions
+*/
+const add = (a: number, b: number): number => {
+    return a + b;
+}
+/* return type as if nothing return void */
+const logMsg = (msg: any): void => {
+    console.log(msg);
+}
+
+logMsg('Hello')
+logMsg(add(2, 5))
+// logMsg('Hello')
