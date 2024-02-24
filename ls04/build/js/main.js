@@ -60,5 +60,32 @@ const total = (a, ...nums) => {
     return a + nums.reduce((prev, curr) => prev + curr);
 };
 // not as array
-logMsg(total(1));
-/* NEVER type */ 
+logMsg(total(1, 2, 3, 3));
+/* NEVER type */
+// has never as return type
+const createError = (errMsg) => {
+    throw new Error(errMsg);
+};
+// infinte
+// this has never as return type
+const infinite = () => {
+    let i = 1;
+    // endless-loop
+    while (true) {
+        i++;
+        // solution
+        if (i > 100)
+            break;
+    }
+};
+/* actually be useful */
+const stringOrNumber = (value) => {
+    // tsc does'nt like this
+    if (typeof value === 'string')
+        return 'string';
+    if (typeof value === 'number')
+        return 'number';
+    // making explicit return type
+    return createError('This not happen!');
+};
+logMsg(stringOrNumber(3434));
