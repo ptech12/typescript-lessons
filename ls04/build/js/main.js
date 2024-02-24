@@ -53,3 +53,12 @@ const sumAll = (a, b, c = 2) => {
     // is undefined
     return a + b;
 };
+/*  REST PARAMETERs */
+// it will take it as array and return a number
+const total = (a, ...nums) => {
+    // reduce method add up to the function
+    return a + nums.reduce((prev, curr) => prev + curr);
+};
+// not as array
+logMsg(total(1));
+/* NEVER type */ 

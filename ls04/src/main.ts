@@ -88,3 +88,16 @@ const sumAll = (a: number, b: number, c: number = 2): number => {
     // is undefined
     return a + b;
 }
+
+/*  REST PARAMETERs */
+// it will take it as array and return a number
+const total = (a: number, ...nums: number[]): number => {
+    // reduce method add up to the function
+    return a + nums.reduce((prev, curr) => prev + curr);
+}
+
+// not as array
+logMsg(total(1))
+
+
+/* NEVER type */
