@@ -1,134 +1,39 @@
-// Keeps the code DRY
-// Don't Repeat Yourself
-/* 
-    type Aliases
-*/
-type strOrNum = string | number;
-
-type strOrNumArray = (string | number)[]
+// create new alias
+type One = string;
+type Two = string | number;
+type Three = 'hello';
 
 
-type Guitarist = {
-    name?: string,
-    active: boolean,
-    // using type aliases => strOrNumArray
-    albums: strOrNumArray  // union array type 
-}
+// convert to more or less specific
+let a: One = 'hello';
 
-type userId = strOrNum
+let b = a as Two // less specifig type
+let c = a as Three // more specific
 
-// Literal type
-// Also keeps the code DRY
-let myName: 'Dave';
+// fine with typescri[t
+// but these syntax doesn't allowed in React
+let d = <One>'world';
+let e = <string | number>'world'
 
-myName = 'Dave'
-
-let userName: 'Dave' | 'John' | 'Amy';
-
-userName = "John"
-
-// functions
-/* a and b are number type */
-/*
- typescript automattically inferes the return type as number 
- unless explictly mentions
-*/
-const add = (a: number, b: number): number => {
-    return a + b;
-}
-/* return type as if nothing return void */
-const logMsg = (msg: any): void => {
-    console.log(msg);
-}
-
-logMsg('Hello')
-logMsg(add(2, 5))
-// logMsg('Hello')
-
-/* normal function */
-let substract = function(c: number, d: number): number {
-    return c - d;
-}
-
-type mathParams = (a: number, b: number) => number;
-
-interface multipplyInterface {
-    (a: number, b: number): number
-}
-
-let multiply: mathParams = function(c, d){
-    return c * d;
-}
-
-logMsg(multiply(2,2))
-
-/* 
-    c is optional param => error: c is possibly undefined
-    for that we use typecard
-*/
-const addAll = (a: number, b: number, c?: number): number => {
-    // typecard
-    if (c !== undefined) {
-        return a + b + c;
-        
+// adds up or concats the given string
+const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string => {
+    if (c === 'add') {
+        return a + b;
     }
-    // if below statement is not present, 
-    // the functions lacks an return because there is a possiblity
-    // that the above if statement may excute or not
-    return a + b;
-}
-logMsg(addAll(2, 2))
-logMsg(addAll(2, 2, 8))
-/* 
-    c is deafult value, 
-*/
-const sumAll = (a: number, b: number, c: number = 2): number => {
-
-    // for default value we don't need typecard the check wheather it 
-    // is undefined
-    return a + b;
+    return ' ' + a + b;
 }
 
-/*  REST PARAMETERs */
-// it will take it as array and return a number
-const total = (a: number, ...nums: number[]): number => {
-    // reduce method add up to the function
-    return a + nums.reduce((prev, curr) => prev + curr);
-}
+let myVar: string = addOrConcat(1, 4, 'concat') as string // assertion as string
 
-// not as array
-logMsg(total(1,2,3,3))
+// need to carefull - but a string is returned
+let nextVar: number = addOrConcat(1, 4, 'concat') as number // assertion as string
 
+// console.log(myVar);
+// console.log(nextVar);
 
-/* NEVER type */
-// has never as return type
-const createError = (errMsg: string) => {
-    throw new Error(errMsg);
-}
+// usefult with DOM 
+const img = document.querySelector('img')!; // even more specific
+const myImg = document.getElementById('img') as HTMLImageElement; // even lighter specific
 
-// infinte
-// this has never as return type
-const infinite = () => {
-    let i: number = 1;
-    // endless-loop
-    while (true) {
-        i++;
-        // solution
-        if(i > 100) break
-    }
-}
-
-
-/* actually be useful */
-const stringOrNumber = (value: any): string => {
-    // tsc does'nt like this
-    if(typeof value === 'string') return 'string';
-    if(typeof value === 'number') return 'number';
-    // making explicit return type
-    return createError('This not happen!');
-}
-
-logMsg(
-stringOrNumber(3434)
-)
- 
+img.src
+myImg.src // doesn;t have source props
