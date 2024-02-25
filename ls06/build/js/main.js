@@ -76,3 +76,30 @@ console.log(`Total static count ${Peeps.count}`);
 console.log('John id', John.id);
 console.log('Steve id', Steve.id);
 console.log('Amy id', Amy.id);
+/* ---------------------------------- */
+console.log('* ---------------------------------- *');
+class Bands {
+    constructor() {
+        // init as empty array
+        this.dataState = [];
+    }
+    // get makes the methods as getter fucntion
+    get data() {
+        return this.dataState;
+    }
+    set data(value) {
+        if (Array.isArray(value) && value.every(el => typeof el === 'string')) {
+            this.dataState = value;
+            return;
+        }
+        else
+            throw new Error('Param is not an array of strings');
+    }
+}
+// testing it out
+const MyBands = new Bands();
+MyBands.data = ['Neil Young', 'Led Zep'];
+console.log(MyBands.data);
+MyBands.data = [...MyBands.data, 'ZZ Top'];
+console.log(MyBands.data);
+MyBands.data = ['Van Halen', '999'];
