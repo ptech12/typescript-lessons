@@ -83,3 +83,37 @@ class Guitarist implements Musician {
         return `${this.name} ${action} the ${this.instrument}`
     }
 }
+
+
+const Page = new Guitarist('Jimmy', 'guitar')
+console.log( Page.play('strums'));
+
+/* ---------------------------------- */
+
+
+class Peeps{
+    static count: number = 0; // does not need any instance creation
+
+    static getCount(): number{
+        // same goes for the methods
+        return Peeps.count;
+    }
+
+    public id: number;
+
+    constructor(public name: string){
+        this.name = name;
+        this.id = ++Peeps.count; // count is = 0
+    }
+}
+
+const John = new Peeps('John')
+const Steve = new Peeps('Steve')
+const Amy = new Peeps('Amy')
+
+console.log(`Total static count ${Peeps.count}`);
+
+console.log('John id', John.id);
+console.log('Steve id', Steve.id);
+console.log('Amy id', Amy.id);
+
