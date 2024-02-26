@@ -74,3 +74,24 @@ console.log(getUsersProperty(usersArray, 'age'));
 console.log(getUsersProperty(usersArray, 'username'));
 /* --------------------------- complex =---------------------- */
 /* --------------------------- class =---------------------- */
+class StateObject {
+    constructor(value) {
+        this.data = value;
+    }
+    get state() {
+        return this.data;
+    }
+    set state(value) {
+        this.data = value;
+    }
+}
+// class instance
+const store = new StateObject("John");
+console.log(store.state);
+store.state = 'Dave';
+console.log(store.state);
+// store.state = 23 // num not assignable to string
+// exactly specified what obj is used in our state
+const myState = new StateObject([15]);
+myState.state = (['Dave', 24, true]);
+console.log(myState.state);
