@@ -53,3 +53,12 @@ const logStudentKey = (student, key) => {
     console.log(`Student ${key}: ${student[key]}`);
 };
 logStudentKey(student, 'name');
+divider();
+const monthlyIncomes = {
+    salary: 500,
+    bonus: 100,
+    sidehultes: 250
+};
+for (const rev in monthlyIncomes) {
+    console.log(monthlyIncomes[rev]);
+}

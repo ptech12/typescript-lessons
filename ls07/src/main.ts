@@ -86,3 +86,32 @@ const logStudentKey = (student: Student, key: keyof Student): void => {
 }
 
 logStudentKey(student, 'name')
+
+
+
+divider();
+// index signatures with types
+
+/* 
+ * BUT literal is not allowed inside interface while assigning index signatures 
+ * in this type we can clearly declare specifically each type
+*/
+
+/* interface Incomes {
+    [key: string | number]: number
+} */
+
+type Streams = 'salary' | 'bonus' | 'sidehultes';
+// literal type is allowed inside the type
+// here not declared specifically
+type Incomes = Record<Streams, number | string>
+
+const monthlyIncomes: Incomes = {
+    salary: 500,
+    bonus: 100,
+    sidehultes: 250
+}
+
+for (const rev in monthlyIncomes){
+    console.log(monthlyIncomes[rev as keyof Incomes]);
+}
