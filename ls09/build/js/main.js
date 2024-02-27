@@ -1,5 +1,14 @@
 "use strict";
 // utility types
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 // allow us to update only one part of the Object 
 // with Partial
 const updateAssignment = (assign, propsToUpdate) => {
@@ -55,3 +64,13 @@ console.log(tsAssign);
 const assignArgs = ["Generics", 100];
 const tsAssign2 = createNewAssign(...assignArgs);
 console.log(tsAssign2);
+const fetchUsers = () => __awaiter(void 0, void 0, void 0, function* () {
+    const data = yield fetch('https://jsonplaceholder.typicode.com/users').then(res => {
+        return res.json();
+    }).catch(err => {
+        if (err instanceof Error)
+            console.error(err.message);
+    });
+    return data;
+});
+fetchUsers().then(users => console.log(users));
