@@ -26,3 +26,15 @@ const assignGraded: Assignment = updateAssignment(assign1, { grade: 97 })
 console.log(assignGraded);
 
 
+// Required and readonly
+const recordAssignment = (assign: Required<Assignment>): Assignment => {
+    // send to database etc,
+    return assign;
+}
+
+const assignVerified: Readonly<Assignment> = {
+    ...assignGraded, verified: true
+}
+
+console.log(recordAssignment({...assignGraded, verified: true}));
+
