@@ -38,3 +38,31 @@ const assignVerified: Readonly<Assignment> = {
 
 console.log(recordAssignment({...assignGraded, verified: true}));
 
+
+
+// Record
+const hexColorMap: Record<string, string> = {
+    red: "FF0000",
+    green: "00FF00",
+    blue: "0000FF",
+}
+
+// create string literal types
+type Students = "Sara" | "Kelly";
+type LetterGrades = "A" | "B" | "C" | "D" | "U";
+
+const finalGrades: Record<Students, LetterGrades> = {
+    Sara: "A",
+    Kelly: "C"
+}
+
+// same with interface type
+interface Grades {
+    a1: number,
+    a2: number
+}
+
+const gradeData: Record<Students, Grades> = {
+    Sara: { a1: 34, a2: 67},
+    Kelly: { a1: 63, a2: 90}
+}
