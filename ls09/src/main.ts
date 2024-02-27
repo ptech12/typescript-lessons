@@ -66,3 +66,67 @@ const gradeData: Record<Students, Grades> = {
     Sara: { a1: 34, a2: 67},
     Kelly: { a1: 63, a2: 90}
 }
+
+
+/*  9.4: Pick and Omit  */
+// we are picking up ("studentId" or "grade") From the Assignment
+type assignResult =  Pick<Assignment, "studentId" | "grade"> 
+
+const score: assignResult = {
+    studentId: "k123", 
+    grade: 23
+}
+
+// Omit the opposite
+type assignPreview = Omit<Assignment, "grade" | "verified">
+
+const preview: assignPreview = {
+    // omitted grade and verified
+    studentId: 'k123',
+    title: " Final Project "
+}
+
+// 9.5: Exclude and Extract & NonNullable
+/* only with string literal & union types */
+type adjustedGrade = Exclude<LetterGrades, "U">
+
+// extract 
+type highGrade = Extract<LetterGrades, "A" | "B">
+
+
+// Nonnullabel
+type AllPossible = 'Dave' | 'Mary' | null | undefined;
+
+type NamesOnly = NonNullable<AllPossible>
+
+// complex
+// 9.6: ReturnType
+
+//  need to update this whenever function changes
+// type newAssign = { title: string, points: number } // create ahead before creating the function
+
+const createNewAssign = (title: string, points: number)  => {
+    return { title, points }
+}
+
+// instead
+type NewAssign = ReturnType<typeof createNewAssign>
+
+
+const tsAssign: NewAssign = createNewAssign(
+    "Utility Types", 100
+)
+
+console.log(tsAssign);
+
+
+//  9.7: Parameters
+type AssignParam = Parameters<typeof createNewAssign>
+
+const assignArgs: AssignParam = ["Generics", 100];
+
+
+const tsAssign2: NewAssign = createNewAssign(...assignArgs);
+console.log(tsAssign2);
+
+
